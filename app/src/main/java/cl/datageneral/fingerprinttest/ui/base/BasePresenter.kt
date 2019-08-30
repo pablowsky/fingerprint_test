@@ -1,6 +1,7 @@
 package cl.datageneral.fingerprinttest.ui.base
 
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 
 /**
@@ -23,11 +24,12 @@ open class BasePresenter<V: BaseContract.View>: BaseContract.Presenter<V> {
     }
 
     override fun onDetach() {
-        /*if(q!=null){
-            q?.close()
-        }*/
-        //compositeDisposable.dispose()
+        mCompositeDisposable?.dispose()
         mView = null
+    }
+
+    override fun addDisposable(disposable: Disposable) {
+        mCompositeDisposable?.add(disposable)
     }
 
 
