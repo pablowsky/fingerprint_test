@@ -2,6 +2,12 @@ package cl.datageneral.fingerprinttest.di.module
 
 import android.content.Context
 import cl.datageneral.fingerprinttest.BVApplication
+import cl.datageneral.fingerprinttest.data.DataManager
+import cl.datageneral.fingerprinttest.data.prefs.PreferencesManager
+import cl.datageneral.fingerprinttest.ui.biometric.BiometricUtils
+import cl.datageneral.fingerprinttest.ui.biometric.BiometricsManagerImpl
+import cl.datageneral.fingerprinttest.utils.rx.SchedulerProvider
+import cl.datageneral.fingerprinttest.utils.rx.SchedulerProviderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -14,23 +20,27 @@ abstract class AppModule {
 
     @Binds
     abstract fun provideContext(application: BVApplication) : Context
-/*
+
     @Module
     companion object {
-        @JvmStatic
-        @Provides
-        fun provideDataManager(q: Query, p: MyPrefs, a: ApiInterface): DataManager = DataManager(q, p, a)
-
         @JvmStatic
         @Provides
         fun provideSchedulerProvider(): SchedulerProvider = SchedulerProviderImpl()
 
         @JvmStatic
         @Provides
-        fun provideMyPrefs(context: Context): MyPrefs = MyPrefs(context)
+        fun provideDataManager(p: PreferencesManager): DataManager = DataManager(p)
 
         @JvmStatic
         @Provides
-        fun provideQuery(): Query = Query()
-    }*/
+        fun providePreferencesManager(context: Context): PreferencesManager = PreferencesManager(context)
+
+        @JvmStatic
+        @Provides
+        fun provideBiometricUtils(context: Context): BiometricUtils = BiometricUtils(context)
+
+        @JvmStatic
+        @Provides
+        fun provideBiometricsManager(): BiometricsManagerImpl = BiometricsManagerImpl()
+    }
 }
