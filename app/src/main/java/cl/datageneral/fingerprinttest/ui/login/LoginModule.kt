@@ -1,5 +1,8 @@
 package cl.datageneral.fingerprinttest.ui.login
 
+import cl.datageneral.fingerprinttest.data.DataManager
+import cl.datageneral.fingerprinttest.ui.biometric.BiometricUtils
+import cl.datageneral.fingerprinttest.utils.rx.SchedulerProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -18,7 +21,6 @@ abstract class LoginModule{
 
 		@JvmStatic
 		@Provides
-		//fun provideAuditEditionePresenter(dm: DataManager, sp: SchedulerProvider): AuditEditionPresenter<AuditEditionContract.View> = AuditEditionPresenter(dm, sp)
-		fun provideAuditEditionePresenter(): LoginPresenter<LoginContract.View> = LoginPresenter()
+		fun provideLoginPresenter(dm: DataManager, bioUtils: BiometricUtils, sp: SchedulerProvider): LoginPresenter<LoginContract.View> = LoginPresenter(dm, bioUtils, sp)
 	}
 }
