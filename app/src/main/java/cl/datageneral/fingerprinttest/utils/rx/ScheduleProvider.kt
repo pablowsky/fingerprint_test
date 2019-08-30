@@ -1,4 +1,4 @@
-package cl.bureauveritas.auditorias.utils.rx
+package cl.datageneral.fingerprinttest.utils.rx
 
 import io.reactivex.Scheduler
 
